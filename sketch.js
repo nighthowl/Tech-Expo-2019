@@ -1,3 +1,5 @@
+let capture;
+
 function setup() {
     createCanvas(1280, 720);
     capture = createCapture(VIDEO);
