@@ -17,7 +17,9 @@ function setup() {
 
 function draw() {
     background(255);
-    image(capture, 0, 0, 1920, 1080);
+    translate(width,0);
+    scale(-1.0,1.0);
+    image(capture, 0, 0, width, height);
     drawArms();
 }
 
