@@ -2,13 +2,14 @@ let capture;
 let poseNet;
 let poses = [];
 let skeletons = [];
+let ball;
 
 function setup() {
     createCanvas(1920, 1080);
     capture = createCapture(VIDEO);
     capture.size(1280, 720);
     capture.hide();
-
+    ball = new Ball();
     poseNet = ml5.poseNet(capture)
     poseNet.on('pose', function (results) {
         poses = results;
@@ -19,7 +20,9 @@ function draw() {
     background(255);
     translate(width,0);
     scale(-1.0,1.0);
+    ball.update();
     image(capture, 0, 0, width, height);
+    ball.display();
     drawArms();
 }
 
