@@ -5,9 +5,8 @@ let skeletons = [];
 let ball;
 
 function setup() {
-    createCanvas(1920, 1080);
+    createCanvas(window.innerWidth, window.innerHeight);
     capture = createCapture(VIDEO);
-    capture.size(1280, 720);
     capture.hide();
     ball = new Ball();
     poseNet = ml5.poseNet(capture)
@@ -18,8 +17,6 @@ function setup() {
 
 function draw() {
     background(255);
-    translate(width,0);
-    scale(-1.0,1.0);
     ball.update();
     image(capture, 0, 0, width, height);
     ball.display();
@@ -31,7 +28,7 @@ function drawArms() {
     for(let i = 0; i < poses.length; i++) {
         stroke(112, 14, 87);
         strokeWeight(5);
-        let poseMultiplier = 1.5; 
+        let poseMultiplier = 1; 
         let pose = poses[i].pose;
         let leftShoulder, rightShoulder, leftElbow, rightElbow, leftWrist, rightWrist;
         if(pose.keypoints[5].score > 0.2){leftShoulder = pose.keypoints[5];}
